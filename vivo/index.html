@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0A0A0A">
+<title>Porra en vivo · Neza Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/vivo/vivo.css">
+</head>
+<body>
+  <div class="card" id="card">
+    <button class="gear" id="gear" title="Marcador">⚙</button>
+    <div class="kicker"><span class="dot"></span> Porra en vivo</div>
+
+    <div class="winner empty" id="winner">
+      <div class="tro">🏆</div><div class="who"><div class="ig">Cargando…</div></div>
+    </div>
+
+    <div class="score">
+      <div class="t"><span class="fl">🇪🇸</span><span class="nm">España</span></div>
+      <div class="nums"><span id="esN">–</span><span class="sep">:</span><span id="uyN">–</span></div>
+      <div class="t"><span class="fl">🇺🇾</span><span class="nm">Uruguay</span></div>
+    </div>
+    <div class="min" id="min">Min. 1er gol: <b>—</b></div>
+
+    <ul class="rank" id="rank"></ul>
+    <div class="foot" id="foot"></div>
+  </div>
+
+  <!-- Panel de control del marcador -->
+  <div class="ctrl hidden" id="ctrl">
+    <div class="box">
+      <h2>Marcador del partido</h2>
+      <p>Cámbialo en cada gol. La pantalla se actualiza sola.</p>
+
+      <div id="pwdWrap" class="hidden">
+        <div class="cerr">Introduce la contraseña del panel para poder cambiar el marcador.</div>
+        <input id="pwd" class="pwd" type="password" placeholder="Contraseña" autocomplete="off">
+        <div class="btns"><button class="primary" id="savePwd">Entrar</button></div>
+      </div>
+
+      <div class="teamrow">
+        <span class="lbl">🇪🇸 España</span>
+        <div class="stepper"><button data-bump="es:-1">−</button><span class="v" id="cEs">0</span><button data-bump="es:1">+</button></div>
+      </div>
+      <div class="teamrow">
+        <span class="lbl">🇺🇾 Uruguay</span>
+        <div class="stepper"><button data-bump="uy:-1">−</button><span class="v" id="cUy">0</span><button data-bump="uy:1">+</button></div>
+      </div>
+      <div class="fieldrow">
+        <label for="cMin">Min. del 1er gol</label>
+        <input id="cMin" type="number" inputmode="numeric" min="0" placeholder="—">
+        <button class="ghost" id="reset" style="margin-left:auto;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:10px;padding:10px 14px;font:inherit;font-weight:800;cursor:pointer;">0–0</button>
+      </div>
+
+      <div class="btns"><button class="primary" id="close">Listo</button></div>
+      <div class="savehint" id="savehint"></div>
+    </div>
+  </div>
+
+  <script src="/vivo/vivo.js"></script>
+</body>
+</html>

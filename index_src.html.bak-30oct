@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEZA STUDIOS — Próximo drop 31.10</title>
+<meta name="description" content="Nuevo drop de Neza Studios. 31 de octubre de 2026. Déjanos tu email y sé el primero.">
+<meta property="og:title" content="NEZA STUDIOS — Próximo drop 31.10.26">
+<meta property="og:description" content="Algo nuevo está en camino. Sé el primero en llevarlo.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --blue:#0070E0; --black:#0A0A0A; --field:rgba(22,22,24,.72); --white:#F7F7F5; --soft:#D6D6D2; --mute:#9b9b97; --line:rgba(255,255,255,.18); }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{background:var(--black);color:var(--white);font-family:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;min-height:100%;display:flex;align-items:center;justify-content:center;padding:48px 20px;}
+
+  /* ---- vídeo de fondo en bucle ---- */
+  #bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none;}
+  /* quitar el boton de play de iOS/Safari */
+  #bg::-webkit-media-controls,#bg::-webkit-media-controls-panel,
+  #bg::-webkit-media-controls-start-playback-button,#bg::-webkit-media-controls-play-button{display:none!important;-webkit-appearance:none!important;opacity:0!important;}
+  .scrim{position:fixed;inset:0;z-index:-1;
+    background:linear-gradient(180deg, rgba(8,8,8,.82) 0%, rgba(8,8,8,.6) 30%, rgba(8,8,8,.58) 58%, rgba(8,8,8,.86) 100%);}
+
+  .wrap{position:relative;z-index:1;width:100%;max-width:560px;text-align:center;}
+  .neza{height:42px;width:auto;margin:0 auto 34px;display:block;filter:drop-shadow(0 2px 16px rgba(0,0,0,.55));}
+  .eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;font-weight:800;color:var(--blue);margin-bottom:22px;}
+  h1{font-size:40px;line-height:1.04;font-weight:900;letter-spacing:-1.2px;text-transform:uppercase;text-shadow:0 2px 22px rgba(0,0,0,.55);}
+
+  .count{display:flex;justify-content:center;gap:12px;margin:34px 0 14px;}
+  .cell{background:var(--field);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);border:1px solid var(--line);border-radius:14px;padding:16px 6px 12px;min-width:78px;}
+  .cell .n{font-size:42px;font-weight:900;letter-spacing:-1px;line-height:1;font-variant-numeric:tabular-nums;}
+  .cell .l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-top:8px;font-weight:700;}
+  .date{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:700;color:var(--soft);text-shadow:0 1px 10px rgba(0,0,0,.6);}
+  .date b{color:var(--white);}
+
+  .cap{margin-top:38px;border-top:1px solid var(--line);padding-top:30px;}
+  .cap p{font-size:16px;color:var(--soft);margin-bottom:14px;text-shadow:0 1px 10px rgba(0,0,0,.6);}
+  form{display:flex;gap:10px;}
+  input{flex:1;background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;color:var(--white);
+    font-family:inherit;font-size:16px;font-weight:600;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;}
+  input::placeholder{color:#cfcfca;font-weight:500;opacity:.7;}
+  input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,112,224,.25);}
+  button{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:0 22px;font-family:inherit;font-size:15px;font-weight:900;
+    letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:background .15s;white-space:nowrap;}
+  button:hover{background:#0a7ff0;}
+  button:disabled{background:#2a2a2c;color:#9b9b99;}
+  .msg{min-height:18px;margin-top:12px;font-size:13.5px;font-weight:600;}
+  .msg.ok{color:#7be39a;} .msg.err{color:#ff8682;}
+
+  .foot{margin-top:42px;display:flex;align-items:center;justify-content:center;gap:18px;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--soft);}
+  .foot a{color:var(--soft);text-decoration:none;}
+  .foot a:hover{color:var(--blue);}
+  @media(max-width:480px){ h1{font-size:32px;} .cell{min-width:66px;padding:14px 4px 10px;} .cell .n{font-size:34px;} form{flex-direction:column;} button{padding:15px;} }
+</style>
+</head>
+<body>
+  <video id="bg" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="bg-desktop.jpg"></video>
+  <div class="scrim"></div>
+
+  <div class="wrap">
+    <img class="neza" src="__NEZA_LOGO__" alt="nezastudios">
+    <div class="eyebrow">Próximo drop</div>
+    <h1>Algo nuevo<br>está en camino</h1>
+
+    <div class="count" id="count">
+      <div class="cell"><div class="n" id="d">--</div><div class="l">Días</div></div>
+      <div class="cell"><div class="n" id="h">--</div><div class="l">Horas</div></div>
+      <div class="cell"><div class="n" id="m">--</div><div class="l">Min</div></div>
+      <div class="cell"><div class="n" id="s">--</div><div class="l">Seg</div></div>
+    </div>
+    <div class="date">Sábado <b>31 de octubre</b> · 2026</div>
+
+    <div class="cap">
+      <p>Sé el primero en llevarlo. Déjanos tu email y te avisamos del drop.</p>
+      <form id="f" novalidate>
+        <input id="email" type="email" inputmode="email" placeholder="tucorreo@email.com" autocomplete="email" required>
+        <button type="submit" id="btn">Avísame</button>
+      </form>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="foot">
+      <a href="https://instagram.com/nezastudios_" target="_blank" rel="noopener">@nezastudios_</a>
+      <span>·</span>
+      <span>Desde el Sur</span>
+    </div>
+  </div>
+
+<script>
+  // ---- elegir vídeo de fondo + autoplay robusto (movil/iOS) ----
+  (function(){
+    var bg = document.getElementById('bg');
+    var mob = window.matchMedia('(max-width:768px)').matches;
+    bg.muted = true; bg.defaultMuted = true; bg.setAttribute('muted',''); bg.playsInline = true;
+    bg.poster = mob ? 'bg-mobile.jpg' : 'bg-desktop.jpg';
+    bg.src = mob ? 'bg-mobile.mp4' : 'bg-desktop.mp4';
+    bg.load();
+    function tryPlay(){ var p = bg.play(); if (p && p.catch) p.catch(function(){}); }
+    bg.addEventListener('canplay', tryPlay, { once:true });
+    bg.addEventListener('loadeddata', tryPlay, { once:true });
+    tryPlay();
+    // si el navegador bloquea el autoplay, arranca al primer gesto del usuario
+    ['touchstart','pointerdown','click','scroll'].forEach(function(ev){
+      window.addEventListener(ev, function once(){ tryPlay(); window.removeEventListener(ev, once); }, { passive:true, once:true });
+    });
+    document.addEventListener('visibilitychange', function(){ if (!document.hidden) tryPlay(); });
+  })();
+
+  // ---- cuenta atras al 31 de octubre 2026, 00:00 (Madrid) ----
+  var TARGET = new Date('2026-10-31T00:00:00+01:00').getTime();
+  function pad(n){ return (n<10?'0':'') + n; }
+  function tick(){
+    var diff = Math.max(0, TARGET - Date.now());
+    var s = Math.floor(diff/1000);
+    document.getElementById('d').textContent = pad(Math.floor(s/86400));
+    document.getElementById('h').textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById('m').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('s').textContent = pad(s%60);
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ---- captura de email (mismo backend, action=drop) ----
+  var WEBAPP_URL = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT/exec";
+  var f = document.getElementById('f'), btn = document.getElementById('btn'), msg = document.getElementById('msg'), email = document.getElementById('email');
+  function enviar(params, done){
+    var name = 'nezaCb_' + Date.now() + '_' + Math.floor(Math.random()*1e6), s, fin=false;
+    function cleanup(){ try{ delete window[name]; }catch(e){ window[name]=undefined; } if(s&&s.parentNode) s.parentNode.removeChild(s); }
+    window[name] = function(res){ if(fin)return; fin=true; cleanup(); done(res||{}); };
+    var qs = new URLSearchParams(params); qs.set('action','drop'); qs.set('callback', name);
+    s = document.createElement('script'); s.src = WEBAPP_URL + (WEBAPP_URL.indexOf('?')<0?'?':'&') + qs.toString();
+    s.onerror = function(){ if(fin)return; fin=true; cleanup(); done({ok:false,error:'red'}); };
+    document.body.appendChild(s);
+    setTimeout(function(){ if(!fin){ fin=true; cleanup(); done({ok:false,error:'timeout'}); } }, 12000);
+  }
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault(); msg.className='msg'; msg.textContent='';
+    var val = email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)){ msg.className='msg err'; msg.textContent='Pon un email correcto.'; return; }
+    btn.disabled=true; btn.textContent='...';
+    function ok(){ f.style.display='none'; msg.className='msg ok'; msg.textContent='¡Hecho! Te avisamos del drop. Síguenos en @nezastudios_'; }
+    fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'drop',email:val})})
+      .then(function(r){return r.json();})
+      .then(function(res){
+        if (res && res.ok){ ok(); return; }
+        btn.disabled=false; btn.textContent='Avísame';
+        msg.className='msg err'; msg.textContent = (res && res.error==='duplicado') ? 'Ese email ya está apuntado ;)' : 'No se pudo. Reinténtalo.';
+      })
+      .catch(function(){ btn.disabled=false; btn.textContent='Avísame'; msg.className='msg err'; msg.textContent='No se pudo. Reinténtalo.'; });
+  });
+</script>
+</body>
+</html>

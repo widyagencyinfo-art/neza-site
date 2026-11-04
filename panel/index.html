@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel · Neza Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --blue:#0070E0; --black:#0A0A0A; --field:#161618; --white:#F7F7F5; --soft:#BDBDBB; --mute:#7E7E7C; --line:rgba(255,255,255,.12); }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--black);color:var(--white);font-family:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding:28px 18px 80px;}
+  .wrap{max-width:860px;margin:0 auto;}
+  .head{font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:24px;}
+  .head .b{color:var(--blue);}
+  p{color:var(--soft);font-size:15px;margin-bottom:14px;}
+  input{width:100%;max-width:320px;background:var(--field);border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;color:var(--white);font-family:inherit;font-size:16px;font-weight:600;outline:none;-webkit-appearance:none;margin-bottom:12px;display:block;}
+  input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,112,224,.22);}
+  button{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:12px 18px;font-family:inherit;font-size:13.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;}
+  button:hover{background:#0a7ff0;}
+  button.ghost{background:transparent;border:1.5px solid var(--line);color:var(--soft);}
+  button.ghost:hover{border-color:var(--blue);color:#fff;}
+  .err{color:#ff8682;font-size:13.5px;font-weight:600;margin-top:8px;min-height:16px;}
+  .bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:26px;}
+  .stat{background:var(--field);border:1px solid var(--line);border-radius:12px;padding:12px 18px;min-width:120px;}
+  .stat .num{font-size:30px;font-weight:900;line-height:1;}
+  .stat .lab{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);font-weight:700;margin-top:5px;}
+  section{margin-bottom:34px;}
+  .stitle{font-size:15px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--white);margin-bottom:12px;}
+  .stitle span{color:var(--mute);font-weight:600;}
+  .acts{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th{text-align:left;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute);font-weight:700;padding:8px 10px;border-bottom:1.5px solid var(--line);white-space:nowrap;}
+  td{padding:10px;border-bottom:1px solid var(--line);color:var(--white);vertical-align:top;}
+  td.em{color:var(--blue);font-weight:600;}
+  td.ig{font-weight:700;}
+  tr:nth-child(even) td{background:rgba(255,255,255,.02);}
+  .live-inputs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .live-inputs label{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--mute);font-weight:700;}
+  .live-inputs input{width:100px;max-width:30vw;background:var(--field);border:1.5px solid var(--line);border-radius:10px;padding:11px;color:var(--white);font-family:inherit;font-size:20px;font-weight:800;text-align:center;outline:none;-webkit-appearance:none;}
+  .live-inputs input:focus{border-color:var(--blue);}
+  .lv-winner{background:rgba(0,112,224,.12);border:1.5px solid rgba(0,112,224,.6);border-radius:12px;padding:15px 18px;font-size:16px;margin-bottom:14px;color:#EDEDEB;}
+  .lv-winner b{color:#fff;}
+  .muted{color:var(--mute);font-size:13px;margin-top:10px;}
+  .scroll{overflow-x:auto;}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">nezastudios · <span class="b">Panel</span></div>
+
+    <div id="login">
+      <p>Introduce la contraseña del panel.</p>
+      <input id="key" type="password" placeholder="Contraseña" autocomplete="off">
+      <button id="enter">Entrar</button>
+      <div class="err" id="lerr"></div>
+    </div>
+
+    <div id="dash" hidden>
+      <div class="bar">
+        <div class="stat"><div class="num" id="dropN">0</div><div class="lab">Emails del drop</div></div>
+        <div class="stat"><div class="num" id="porraN">0</div><div class="lab">Porra</div></div>
+        <button class="ghost" id="refresh">Refrescar</button>
+        <button class="ghost" id="logout">Salir</button>
+      </div>
+
+      <section>
+        <div class="stitle">Ganador en vivo <span>· mete el marcador actual</span></div>
+        <div class="live-inputs">
+          <label>Goles España<input id="lvEs" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+          <label>Goles Uruguay<input id="lvUy" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+          <label>Min. 1er gol<input id="lvMin" type="number" inputmode="numeric" min="0" placeholder="—"></label>
+        </div>
+        <div class="lv-winner" id="lvWinner">Pon el marcador actual para ver quién va ganando.</div>
+        <div class="scroll"><table><thead><tr><th>#</th><th>Instagram</th><th>Apuesta</th><th>Min.</th><th>Dif.</th></tr></thead><tbody id="lvBody"></tbody></table></div>
+      </section>
+
+      <section>
+        <div class="stitle">Emails del drop <span id="dropC"></span></div>
+        <div class="acts">
+          <button id="copyDrop">Copiar emails</button>
+          <button id="csvDrop">Descargar CSV</button>
+        </div>
+        <div class="scroll"><table><thead><tr><th>Fecha</th><th>Email</th></tr></thead><tbody id="dropBody"></tbody></table></div>
+        <div class="muted" id="dropEmpty" hidden>Aún no hay emails. Cuando alguien se apunte en la web, aparecerá aquí.</div>
+      </section>
+
+      <section>
+        <div class="stitle">Porra <span id="porraC"></span></div>
+        <div class="acts">
+          <button id="copyIG">Copiar Instagram</button>
+          <button id="copyPorraMail">Copiar emails</button>
+          <button id="csvPorra">Descargar CSV</button>
+        </div>
+        <div class="scroll"><table><thead><tr><th>Fecha</th><th>Instagram</th><th>Email</th><th>Resultado</th></tr></thead><tbody id="porraBody"></tbody></table></div>
+        <div class="muted" id="porraEmpty" hidden>Aún no hay participantes en la porra.</div>
+      </section>
+    </div>
+  </div>
+
+<script>
+  var login=document.getElementById('login'), dash=document.getElementById('dash'),
+      keyIn=document.getElementById('key'), lerr=document.getElementById('lerr');
+  var DROP=[], PORRA=[];
+
+  function esc(s){ return String(s==null?'':s).replace(/[<>&]/g,function(c){return{'<':'&lt;','>':'&gt;','&':'&amp;'}[c];}); }
+  function fmt(iso){ try{ var d=new Date(iso); if(isNaN(d)) return iso||''; return d.toLocaleDateString('es-ES')+' '+d.toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'}); }catch(e){ return iso||''; } }
+  function dl(name, text, type){ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:type||'text/csv;charset=utf-8'})); a.download=name; a.click(); }
+  function csvRow(arr){ return arr.map(function(c){ return '"'+String(c==null?'':c).replace(/"/g,'""')+'"'; }).join(','); }
+
+  function load(key){
+    lerr.textContent='Cargando...';
+    fetch('/api/list?key='+encodeURIComponent(key))
+      .then(function(r){return r.json();})
+      .then(function(res){
+        if(res && res.ok){
+          sessionStorage.setItem('nezaKey', key); lerr.textContent='';
+          login.hidden=true; dash.hidden=false; render(res.drop||[], res.porra||[]);
+        } else { lerr.textContent='Contraseña incorrecta.'; }
+      })
+      .catch(function(){ lerr.textContent='No se pudo cargar. Reinténtalo.'; });
+  }
+
+  function render(drop, porra){
+    DROP=drop; PORRA=porra;
+    document.getElementById('dropN').textContent=drop.length;
+    document.getElementById('porraN').textContent=porra.length;
+    document.getElementById('dropC').textContent='('+drop.length+')';
+    document.getElementById('porraC').textContent='('+porra.length+')';
+
+    var db=document.getElementById('dropBody'); db.innerHTML='';
+    document.getElementById('dropEmpty').hidden = drop.length>0;
+    drop.slice().reverse().forEach(function(x){
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+esc(fmt(x.date))+'</td><td class="em">'+esc(x.email)+'</td>';
+      db.appendChild(tr);
+    });
+
+    var pb=document.getElementById('porraBody'); pb.innerHTML='';
+    document.getElementById('porraEmpty').hidden = porra.length>0;
+    porra.slice().reverse().forEach(function(x){
+      var res = (x.es!=null?x.es:'')+'-'+(x.uy!=null?x.uy:'') + (x.min?(" · "+x.min+"'"):'');
+      tr=document.createElement('tr');
+      tr.innerHTML='<td>'+esc(fmt(x.date))+'</td><td class="ig">'+esc(x.ig)+'</td><td class="em">'+esc(x.email)+'</td><td>'+esc(res)+'</td>';
+      pb.appendChild(tr);
+    });
+    computeLive();
+  }
+
+  function num(v){ return (v===''||v==null)?null:Number(v); }
+  function computeLive(){
+    var es=document.getElementById('lvEs').value, uy=document.getElementById('lvUy').value, rmin=num(document.getElementById('lvMin').value);
+    var w=document.getElementById('lvWinner'), tb=document.getElementById('lvBody');
+    tb.innerHTML='';
+    if(es===''||uy===''){ w.textContent='Pon el marcador actual para ver quién va ganando.'; return; }
+    var m=PORRA.filter(function(x){ return String(x.es)===String(es) && String(x.uy)===String(uy); });
+    m.forEach(function(x){ var mn=num(x.min); x._d=(rmin==null||mn==null)?99999:Math.abs(mn-rmin); });
+    m.sort(function(a,b){ return a._d-b._d; });
+    if(!m.length){ w.textContent='Nadie ha acertado el '+es+'-'+uy+' (todavía).'; return; }
+    var g=m[0];
+    w.innerHTML='🏆 Va ganando <b>'+esc(g.ig)+'</b>'+(g.email?(' · '+esc(g.email)):'')+' — apostó '+esc(es)+'-'+esc(uy)+(g.min?(' · min '+esc(g.min)):'');
+    m.forEach(function(x,i){
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td>'+(i+1)+'</td><td class="ig">'+esc(x.ig)+'</td><td>'+esc(x.es)+'-'+esc(x.uy)+'</td><td>'+esc(x.min||'')+'</td><td>'+(x._d===99999?'—':x._d)+'</td>';
+      tb.appendChild(tr);
+    });
+  }
+  ['lvEs','lvUy','lvMin'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', computeLive); });
+
+  function copy(text, n){ navigator.clipboard.writeText(text).then(function(){ alert(n+' copiados.'); }, function(){ alert('No se pudo copiar.'); }); }
+
+  document.getElementById('enter').addEventListener('click', function(){ load(keyIn.value.trim()); });
+  keyIn.addEventListener('keydown', function(e){ if(e.key==='Enter') load(keyIn.value.trim()); });
+  document.getElementById('refresh').addEventListener('click', function(){ load(sessionStorage.getItem('nezaKey')||''); });
+  document.getElementById('logout').addEventListener('click', function(){ sessionStorage.removeItem('nezaKey'); dash.hidden=true; login.hidden=false; keyIn.value=''; });
+
+  document.getElementById('copyDrop').addEventListener('click', function(){ copy(DROP.map(function(x){return x.email;}).filter(Boolean).join('\n'), DROP.length+' emails'); });
+  document.getElementById('csvDrop').addEventListener('click', function(){
+    var rows=['Fecha,Email'].concat(DROP.map(function(x){return csvRow([fmt(x.date), x.email]);}));
+    dl('neza-drop-emails.csv', rows.join('\n'));
+  });
+  document.getElementById('copyIG').addEventListener('click', function(){ copy(PORRA.map(function(x){return x.ig;}).filter(Boolean).join('\n'), PORRA.length+' Instagram'); });
+  document.getElementById('copyPorraMail').addEventListener('click', function(){ copy(PORRA.map(function(x){return x.email;}).filter(Boolean).join('\n'), PORRA.length+' emails'); });
+  document.getElementById('csvPorra').addEventListener('click', function(){
+    var rows=['Fecha,Instagram,Email,Goles Espana,Goles Uruguay,Min 1er gol'].concat(PORRA.map(function(x){return csvRow([fmt(x.date), x.ig, x.email, x.es, x.uy, x.min]);}));
+    dl('neza-porra.csv', rows.join('\n'));
+  });
+
+  var saved=sessionStorage.getItem('nezaKey'); if(saved) load(saved);
+</script>
+</body>
+</html>

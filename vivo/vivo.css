@@ -1,0 +1,107 @@
+:root{
+  --blue:#0070E0; --blue-d:#0a5fbd; --bg:#0A0A0A; --field:#161618;
+  --line:rgba(255,255,255,.12); --soft:#BDBDBB; --mute:#807F7D; --white:#F7F7F5;
+  --gold:#FFCB45;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--bg); color:var(--white);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; overflow:hidden;
+}
+body.transparent{background:transparent;}
+
+/* Tarjeta del marcador (esquina de la pantalla) */
+.card{
+  position:fixed; width:380px; max-width:calc(100vw - 36px);
+  background:rgba(18,18,20,.86); backdrop-filter:blur(18px) saturate(1.2);
+  -webkit-backdrop-filter:blur(18px) saturate(1.2);
+  border:1px solid var(--line); border-radius:22px;
+  padding:22px 22px 18px; box-shadow:0 24px 70px rgba(0,0,0,.6);
+  z-index:10;
+}
+.card.tr{top:24px; right:24px;}
+.card.tl{top:24px; left:24px;}
+.card.br{bottom:24px; right:24px;}
+.card.bl{bottom:24px; left:24px;}
+.card.big{ top:50%; left:50%; right:auto; bottom:auto; transform:translate(-50%,-50%); width:560px; padding:34px 34px 26px; }
+
+.kicker{ display:flex; align-items:center; gap:8px; font-size:11px; letter-spacing:2.6px;
+  text-transform:uppercase; font-weight:800; color:var(--blue); margin-bottom:14px; }
+.kicker .dot{ width:8px; height:8px; border-radius:50%; background:#ff4d4d; box-shadow:0 0 0 0 rgba(255,77,77,.6);
+  animation:pulse 1.6s infinite; }
+@keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(255,77,77,.55);} 70%{box-shadow:0 0 0 9px rgba(255,77,77,0);} 100%{box-shadow:0 0 0 0 rgba(255,77,77,0);} }
+
+.winner{ display:flex; align-items:center; gap:14px; margin-bottom:16px; min-height:54px; }
+.winner .tro{ font-size:40px; line-height:1; }
+.card.big .winner .tro{ font-size:58px; }
+.winner .who .ig{ font-size:30px; font-weight:900; letter-spacing:-.8px; line-height:1; word-break:break-word; }
+.card.big .winner .who .ig{ font-size:46px; }
+.winner .who .nm{ font-size:13px; color:var(--soft); font-weight:600; margin-top:4px; }
+.winner.empty .who .ig{ font-size:19px; font-weight:700; color:var(--soft); letter-spacing:-.2px; }
+.winner.empty .tro{ filter:grayscale(1); opacity:.5; }
+
+/* Marcador */
+.score{ display:flex; align-items:center; justify-content:center; gap:14px;
+  background:rgba(0,0,0,.32); border:1px solid var(--line); border-radius:14px;
+  padding:12px 14px; margin-bottom:14px; }
+.score .t{ display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; }
+.score .t .fl{ font-size:24px; }
+.score .t .nm{ font-size:11px; letter-spacing:1.4px; text-transform:uppercase; font-weight:800; color:var(--soft); }
+.score .nums{ display:flex; align-items:center; gap:10px; font-size:40px; font-weight:900; letter-spacing:-1px; }
+.card.big .score .nums{ font-size:54px; }
+.score .nums .sep{ color:var(--mute); font-weight:500; }
+.score .min{ text-align:center; font-size:11px; letter-spacing:1.4px; text-transform:uppercase;
+  color:var(--mute); font-weight:700; margin-bottom:14px; }
+.score .min b{ color:var(--white); }
+
+/* Ranking mini */
+.rank{ list-style:none; display:flex; flex-direction:column; gap:2px; }
+.rank li{ display:flex; align-items:center; gap:10px; padding:7px 4px; border-top:1px solid var(--line); font-size:13.5px; }
+.rank li:first-child{ border-top:0; }
+.rank .pos{ width:20px; color:var(--mute); font-weight:800; font-size:12px; }
+.rank .rig{ font-weight:700; flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rank .rsc{ color:var(--soft); font-weight:600; font-size:12.5px; }
+.rank li.lead .pos{ color:var(--gold); }
+.rank li.lead .rig{ color:var(--white); }
+
+.foot{ margin-top:14px; font-size:11px; letter-spacing:.4px; color:var(--mute); font-weight:600;
+  display:flex; justify-content:space-between; align-items:center; }
+
+/* Engranaje + panel de control */
+.gear{ position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%;
+  background:rgba(255,255,255,.06); border:1px solid var(--line); color:var(--soft);
+  font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.gear:hover{ color:#fff; border-color:var(--blue); }
+.hidden{ display:none !important; }
+
+.ctrl{ position:fixed; inset:0; background:rgba(0,0,0,.72); backdrop-filter:blur(6px);
+  display:flex; align-items:center; justify-content:center; padding:20px; z-index:20; }
+.ctrl .box{ width:420px; max-width:100%; background:#141416; border:1px solid var(--line);
+  border-radius:20px; padding:24px; }
+.ctrl h2{ font-size:15px; font-weight:800; letter-spacing:.4px; margin-bottom:4px; }
+.ctrl p{ font-size:13px; color:var(--mute); margin-bottom:18px; }
+.teamrow{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px;
+  padding:12px 14px; margin-bottom:12px; }
+.teamrow .lbl{ font-size:13px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+.stepper{ display:flex; align-items:center; gap:14px; }
+.stepper button{ width:46px; height:46px; border-radius:12px; border:1px solid var(--line);
+  background:var(--field); color:#fff; font-size:24px; font-weight:800; cursor:pointer; line-height:1; }
+.stepper button:hover{ border-color:var(--blue); }
+.stepper .v{ min-width:34px; text-align:center; font-size:32px; font-weight:900; }
+.fieldrow{ display:flex; align-items:center; gap:10px; margin:12px 0 18px; }
+.fieldrow label{ font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--soft); font-weight:700; }
+.fieldrow input{ width:90px; background:var(--field); border:1px solid var(--line); border-radius:10px;
+  padding:10px; color:#fff; font-family:inherit; font-size:20px; font-weight:800; text-align:center; }
+.btns{ display:flex; gap:10px; }
+.btns button{ flex:1; border:0; border-radius:11px; padding:13px; font-family:inherit;
+  font-size:13px; font-weight:800; letter-spacing:.6px; text-transform:uppercase; cursor:pointer; }
+.btns .primary{ background:var(--blue); color:#fff; }
+.btns .primary:hover{ background:#0a7ff0; }
+.btns .ghost{ background:transparent; border:1px solid var(--line); color:var(--soft); }
+.pwd{ width:100%; background:var(--field); border:1px solid var(--line); border-radius:11px;
+  padding:13px; color:#fff; font-family:inherit; font-size:16px; font-weight:600; margin-bottom:12px; }
+.cerr{ color:#ff8682; font-size:13px; font-weight:600; min-height:16px; margin-bottom:8px; }
+.savehint{ font-size:12px; color:var(--blue); font-weight:700; min-height:16px; text-align:center; margin-top:10px; }

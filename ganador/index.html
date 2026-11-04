@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0A0A0A">
+<title>Ganador · Porra Neza Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ganador/ganador.css">
+</head>
+<body data-state="pre">
+  <canvas id="confetti"></canvas>
+  <button class="gear" id="gear" title="Poner ganador a mano">⚙</button>
+
+  <div id="stage">
+    <div class="kicker"><span class="dot"></span> La porra del Mundial · España × Uruguay</div>
+
+    <!-- PRE -->
+    <div class="screen" id="pre">
+      <div class="title">Y EL <b>GANADOR</b><br>ES…</div>
+      <div class="sub hidden" id="preSub">Va ganando ahora: <span class="who hidden" id="preWho"></span></div>
+      <button class="revealBtn" id="revealBtn">🥁 Revelar ganador</button>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="screen" id="count">
+      <div class="lead">Redoble…</div>
+      <div id="countNum">3</div>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="screen" id="winner">
+      <div class="crown">🏆</div>
+      <div class="lbl">Ganador de la porra</div>
+      <div class="ig" id="igText">@usuario</div>
+      <div class="name" id="wName"></div>
+      <div class="meta" id="wMeta"></div>
+      <div class="prize">👕 Se lleva una <span class="g">CAMISETA GRATIS</span></div>
+      <button class="replay" id="replayBtn">↺ Otra vez</button>
+    </div>
+  </div>
+
+  <div class="brand">
+    <img class="bneza" src="/ganador/logo-neza.png" alt="nezastudios">
+    <span class="bx">×</span>
+    <img class="blib" src="/ganador/logo-libano.png" alt="Líbano Terraza">
+    <span class="bhandle">@nezastudios_</span>
+  </div>
+
+  <!-- control manual -->
+  <div id="manual">
+    <div class="box">
+      <h2>Ganador a mano</h2>
+      <p>Se coge solo del marcador final. Si quieres, ponlo aquí.</p>
+      <input id="mIg" type="text" placeholder="@instagram_del_ganador" autocomplete="off">
+      <input id="mNombre" type="text" placeholder="Nombre (opcional)" autocomplete="off">
+      <div class="row">
+        <button class="ghost" id="mCancel">Cancelar</button>
+        <button class="primary" id="mUse">Revelar a este</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/ganador/ganador.js"></script>
+</body>
+</html>
